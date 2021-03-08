@@ -6,8 +6,11 @@ svg {
 }
 .st0 {
     fill:#2a4749;
+    stroke:#ffb30088;
+    stroke-width: 3px;
 }
 .background {
     fill:#30271e;
-    stroke:#262115;
+    stroke:#ffb30088;
+    stroke-width: 3px;
 }
