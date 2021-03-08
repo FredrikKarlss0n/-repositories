@@ -1,4 +1,13 @@
+h1 {
+    font-style: italic;
+}
 svg {
-    width: 4px;
-    
+    width: 400px;
+}
+.st0 {
+    fill:#2a4749;
+}
+.background {
+    fill:#30271e;
+    stroke:#262115;
 }
