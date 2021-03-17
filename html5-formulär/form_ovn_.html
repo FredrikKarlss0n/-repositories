@@ -5,8 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML-5form</title>
+    <link href="form_ovn-styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    
+    <h1>Get in touch!</h1>
+    <h3>Obligatory fields marked with *</h3>
+
+        <label for="name">Name (3 to 15 characters):</label>
+            <input type="text" id="name" required 
+            minlength="3" maxlength="15" size="15">
+
+        <label for="email">Email:</label>
+            <input type="email" id="email" required 
+            minlength="3" maxlength="100" size="50">
+
+        <label for="age">Age:</label>
+            <input type="number" id="dob" 
+            min="1" max="200" size="15">
+
+    <h3>Additional info</h3>
+        <label for="grade">Grade (1-3)</label>
+            <input type="range" id="grade" min="1" max="3" 
+            onchange="updateTextInput(this.value);">
+
+            <input type="text" id="textInput" size="1">
+        
+                <script>function updateTextInput(val) {
+                    document.getElementById('textInput').value=val; 
+                }</script>            
+
+        <label for="comment">Comment:</label>
+            <textarea type="input" id="comment" rows="5" cols="32"></textarea>
+
+        <label for="letter">Do you want the newsletter?</label>
+            <input type="checkbox" id="letter" >
+
 </body>
 </html>
