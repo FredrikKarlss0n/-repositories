@@ -5,23 +5,29 @@ class Calculator {
             this.currentOperandTextElement = currentOperandTextElement
             this.clear()
         }
+//funktioner för alla funktioner som behövs
 
     clear() {
+        //tar bort allting från queryn
             this.currentOperand = ''
             this.previousOperand = ''
             this.operation = undefined
         }
 
     delete() {
+        //delete funktionen tar bort sista tecknet från queryn
             this.currentOperand = this.currentOperand.toString().slice(0, -1)
         }
 
-        appendNumber(number) {
-            if (number === '.' && this.currentOperand.includes(',')) return
+    appendNumber(number) {
+        //man kan bara ha ett kommatecken
+            if (number === '.' && this.currentOperand.includes('.')) return
+        //adderar nästa siffra till queryn utan att plussa till det ( 1 + 1 = 11 =/= 2)
             this.currentOperand = this.currentOperand.toString() + number.toString()
         }
 
-        chooseOperation(operation) {
+    chooseOperation(operation) {
+        //om query är tomt så räknas ingenting, om den inte är tom så räknar den svaret med compute funktionen
             if (this.currentOperand === '') return
             if (this.previousOperand !== '') {
                 this.compute()
@@ -31,7 +37,8 @@ class Calculator {
             this.currentOperand = ''
         }
 
-        compute() {
+    compute() {
+        //matematiken
             let computation
             const prev = parseFloat(this.previousOperand)
             const current = parseFloat(this.currentOperand)
@@ -57,7 +64,8 @@ class Calculator {
             this.previousOperand = ''
         }
 
-        updateDisplay() {
+    updateDisplay() {
+        //för att updatera siffrorna i sifferfältet
             this.currentOperandTextElement.innerText = this.currentOperand
             this.previousOperandTextElement.innerText = this.previousOperand
         }
@@ -65,7 +73,7 @@ class Calculator {
 }
 
 
-//adderar constants för varje knapp
+//adderar constants för varje knapp, i HTML har vi lagat 'data-' för att referensera i js och 'class' för att referensera i css
 const numberButton = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
@@ -76,33 +84,35 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
-numberButton.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.appendNumber(button.innerText)
-        calculator.updateDisplay()
-    })
-})
+//logik för hur räknaren fungerar, vad som händer när man trycker på knappar
+
+    numberButton.forEach(button => {
+            button.addEventListener('click', () => {
+                calculator.appendNumber(button.innerText)
+                calculator.updateDisplay()
+            })
+        })
 
 
-operationButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.chooseOperation(button.innerText)
-        calculator.updateDisplay()
-    })
-})
+    operationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                calculator.chooseOperation(button.innerText)
+                calculator.updateDisplay()
+            })
+        })
 
-equalsButton.addEventListener('click', button => {
-    calculator.compute()
-    calculator.updateDisplay()
-})
+    equalsButton.addEventListener('click', button => {
+            calculator.compute()
+            calculator.updateDisplay()
+        })
 
 
-allClearButton.addEventListener('click', button => {
-    calculator.clear()
-    calculator.updateDisplay()
-})
+    allClearButton.addEventListener('click', button => {
+            calculator.clear()
+            calculator.updateDisplay()
+        })
 
-deleteButton.addEventListener('click', button => {
-    calculator.delete()
-    calculator.updateDisplay()
-})
+    deleteButton.addEventListener('click', button => {
+            calculator.delete()
+            calculator.updateDisplay()
+        })

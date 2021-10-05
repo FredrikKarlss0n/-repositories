@@ -1,3 +1,5 @@
+/*Vi använder CSS för att styla räknaren så att den är mera användbar och ser bättre ut*/
+
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: sans-serif;
