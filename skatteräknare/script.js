@@ -1,38 +1,27 @@
-
-class Calculator {
-    constructor(salary, tax) {
-        this.salary = salary
-        this.tax = tax
+//funktion for att räkna värde * mängd
+    function subTotal() {
+        var price = document.orderform.price.value;
+        var quantity = document.orderform.quantity.value;
+            productPrice = price * quantity;
+            document.orderform.subtotal.value = productPrice.toFixed(2);
+        return productPrice;
     }
 
-
-    
-    compute() {
-        let computation
-        const salary = parseFloat(this.salary)
-        const tax = parseFloat(this.tax)
-        if (isNaN(salary) || isNaN(tax)) return
-            switch (this.calculate) {
-                case 'calculate':
-                    computation = salary - (salary * (tax / 100))
-            }
+//funktion för att räkna skatten
+    function calculateTax() {
+        var subtotal = subTotal();
+        var stax = 0.15;
+            tax = subtotal * stax;
+            document.orderform.salestax.value = tax.toFixed(3);
+        return tax;
     }
 
-    updateDisplay() {
-        document.getElementById('data-tax-salary').innerHTML
-                = 'Your taxed salary is : ' + computation;
-    }
-
-}
-
-const salary = document.querySelector('[data-salary]')
-const tax = document.querySelector('[data-tax]')
-const calculate = document.querySelector('[data-calculate]')
-const taxedSalary = document.querySelector('[data-tax-salary]')
-
-const calculator = new Calculator(salary, tax)
-
-calculate.addEventListener('click', () => {
-    calculator.compute()
-    calculator.updateDisplay()
-})
+//funktion för att räkna subtotal + skatt
+    function grandTotal() {
+        var subtotal = subTotal();
+        var tax = calculateTax();
+            document.orderform.subtotal.value = subtotal.toFixed(2);
+            document.orderform.salestax.value = tax.toFixed(2);
+        var gtotal = subtotal + tax;
+            document.orderform.gtotal.value = gtotal.toFixed(2);
+    } 
